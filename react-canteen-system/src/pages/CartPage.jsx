@@ -13,17 +13,24 @@ const CartPage = ({
   calculateTotal,
   loyaltyPoints,
   onApplyPoints,
-  user 
+  user,
+  clearCart 
 }) => {
   const navigate = useNavigate();
   const [appliedPoints, setAppliedPoints] = useState(0);
   const [pointsToApply, setPointsToApply] = useState('');
   const [error, setError] = useState('');
+  const [discountedTotal, setDiscountedTotal] = useState(calculateTotal());
+
   const pointsValue = 0.01; // Each point is worth GH₵0.01
 
-  const originalTotal = calculateTotal();
-  const discount = appliedPoints * pointsValue;
-  const finalTotal = Math.max(originalTotal - discount, 0);
+  // Update discounted total whenever cart items or applied points change
+  useEffect(() => {
+    const originalTotal = calculateTotal();
+    const discount = appliedPoints * pointsValue;
+    const newTotal = Math.max(originalTotal - discount, 0);
+    setDiscountedTotal(newTotal);
+  }, [cartItems, appliedPoints, calculateTotal]);
 
   const handleApplyPoints = async () => {
     setError('');
@@ -39,7 +46,7 @@ const CartPage = ({
       return;
     }
 
-    const maxPointsAllowed = Math.floor(originalTotal * 100);
+    const maxPointsAllowed = Math.floor(calculateTotal() * 100);
     if (points > maxPointsAllowed) {
       setError(`You can only apply up to ${maxPointsAllowed} points to this order`);
       return;
@@ -58,18 +65,13 @@ const CartPage = ({
         }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
-        setError(data.message || 'Failed to apply points');
-        return;
+        throw new Error('Failed to apply points');
       }
 
       setAppliedPoints(points);
       setPointsToApply('');
-      if (onApplyPoints) {
-        onApplyPoints(points);
-      }
+      onApplyPoints(points);
     } catch (error) {
       console.error('Error applying points:', error);
       setError('Failed to apply points. Please try again.');
@@ -111,13 +113,13 @@ const CartPage = ({
     if (cartItems.length === 0) return;
 
     try {
-      const pointsEarned = Math.floor(finalTotal * 10);
+      const pointsEarned = Math.floor(discountedTotal * 10);
 
       const orderData = {
         userId: user.id,
         items: cartItems,
-        total: finalTotal,
-        originalTotal: originalTotal,
+        total: discountedTotal,
+        originalTotal: calculateTotal(),
         pointsEarned,
         pointsUsed: appliedPoints,
         status: 'Placed'
@@ -136,6 +138,7 @@ const CartPage = ({
       }
 
       const { order } = await response.json();
+      clearCart();
       navigate('/OrderTracking', { state: { order } });
     } catch (error) {
       console.error('Error during checkout:', error);
@@ -273,7 +276,7 @@ const CartPage = ({
                         onClick={() => {
                           const maxPoints = Math.min(
                             loyaltyPoints,
-                            Math.floor(originalTotal * 100)
+                            Math.floor(calculateTotal() * 100)
                           );
                           setPointsToApply(maxPoints.toString());
                         }}
@@ -282,7 +285,7 @@ const CartPage = ({
                       >
                         Use Maximum Available Points ({Math.min(
                           loyaltyPoints,
-                          Math.floor(originalTotal * 100)
+                          Math.floor(calculateTotal() * 100)
                         )} points)
                       </button>
                       
@@ -297,7 +300,7 @@ const CartPage = ({
                           placeholder="Enter points to use"
                           className="p-2 border rounded-md flex-1"
                           min="0"
-                          max={Math.min(loyaltyPoints, Math.floor(originalTotal * 100))}
+                          max={Math.min(loyaltyPoints, Math.floor(calculateTotal() * 100))}
                         />
                         <button
                           onClick={handleApplyPoints}
@@ -326,7 +329,7 @@ const CartPage = ({
                 <div className="space-y-2">
                   <div className="flex justify-between items-center">
                     <span className="text-gray-600">Subtotal:</span>
-                    <span>GH₵{originalTotal.toFixed(2)}</span>
+                    <span>GH₵{calculateTotal().toFixed(2)}</span>
                   </div>
                   {appliedPoints > 0 && (
                     <div className="flex justify-between items-center text-green-600">
@@ -336,15 +339,15 @@ const CartPage = ({
                   )}
                   <div className="flex justify-between items-center text-xl font-bold">
                     <span>Total:</span>
-                    <span>GH₵{finalTotal.toFixed(2)}</span>
+                    <span>GH₵{discountedTotal.toFixed(2)}</span>
                   </div>
                   <div className="text-sm text-green-600">
-                    You'll earn {Math.floor(finalTotal * 10)} points with this purchase
+                    You'll earn {Math.floor(discountedTotal * 10)} points with this purchase
                   </div>
                 </div>
                 <button
+                  className="w-full mt-4 bg-green-500 text-white py-3 rounded-md hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed"
                   onClick={handleCheckout}
-                  className="w-full mt-4 bg-green-500 text-white py-3 rounded-md hover:bg-green-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                   disabled={cartItems.length === 0}
                 >
                   Proceed to Checkout

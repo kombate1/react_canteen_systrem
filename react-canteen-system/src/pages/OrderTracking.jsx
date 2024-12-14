@@ -94,6 +94,23 @@ const OrderTracking = () => {
     }
   };
 
+  const handleDeleteOrder = async (orderId) => {
+    try {
+      const response = await fetch(`http://localhost:3001/api/orders/${orderId}`, {
+        method: 'DELETE',
+      });
+
+      if (response.ok) {
+        // Remove the deleted order from the orderHistory state
+        setOrderHistory(orderHistory.filter(order => order.orderId !== orderId));
+      } else {
+        console.error('Failed to delete order');
+      }
+    } catch (error) {
+      console.error('Error deleting order:', error);
+    }
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen bg-gray-100 pt-20 flex items-center justify-center">
@@ -225,6 +242,12 @@ const OrderTracking = () => {
                       </p>
                     )}
                   </div>
+                  <button
+                    onClick={() => handleDeleteOrder(historyOrder.orderId)}
+                    className="mt-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 transition-colors"
+                  >
+                    Delete Order
+                  </button>
                 </div>
               ))}
             </div>

@@ -196,7 +196,7 @@ const insertDummyData = async () => {
         },
         {
             name: "Kelewele",
-            category: "snacks",
+            category: "sides",
             basePrice: 15.00,
             description: "Spiced and diced fried plantains with ground ginger and spices",
             image: "/src/images/kelewele.jpg",
@@ -367,7 +367,7 @@ app.get('/api/menu-items', async (req, res) => {
 app.get('/api/menu-items/:category', async (req, res) => {
     try {
         const category = req.params.category.toLowerCase();
-        console.log('Filtering by category:', category); // Debug log
+        console.log('Filtering by category:', category); 
 
         if (category === 'all') {
             const items = await MenuItems.find();
@@ -378,7 +378,7 @@ app.get('/api/menu-items/:category', async (req, res) => {
             category: { $regex: new RegExp(category, 'i') } 
         });
         
-        console.log('Found items:', items.length); // Debug log
+        console.log('Found items:', items.length); 
         res.json(items);
     } catch (err) {
         console.error('Error fetching category items:', err);
@@ -397,10 +397,9 @@ app.get('/api/categories', async (req, res) => {
     }
 });
 
-// Route to handle customization (if needed)
+
 app.post('/api/customize', (req, res) => {
     const { itemId, selections } = req.body;
-    // Process customization logic here
     res.status(200).send('Customization processed');
 });
 
@@ -694,6 +693,7 @@ const orderSchema = new mongoose.Schema({
   },
   timestamp: {
     type: Date,
+    
     default: Date.now
   }
 });
@@ -916,6 +916,25 @@ app.patch('/api/orders/:orderId', async (req, res) => {
   } catch (error) {
     console.error('Error updating order:', error);
     res.status(500).json({ message: 'Error updating order' });
+  }
+});
+
+// Delete an order from the user's history
+app.delete('/api/orders/:orderId', async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    // Find and delete the order by orderId
+    const order = await Order.findOneAndDelete({ orderId });
+
+    if (!order) {
+      return res.status(404).json({ message: 'Order not found' });
+    }
+
+    res.json({ message: 'Order deleted successfully' });
+  } catch (error) {
+    console.error('Error deleting order:', error);
+    res.status(500).json({ message: 'Error deleting order' });
   }
 });
 

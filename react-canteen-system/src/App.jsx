@@ -11,6 +11,7 @@ import SignIn from './pages/SignIn'
 import SignUp from './pages/SignUp'
 import Profile from './pages/Profile'
 import OrderHistory from './pages/OrderHistory'
+import Footer from './Components/Footer'
 
 const App = () => {
   const [cartItems, setCartItems] = useState([]);
@@ -174,101 +175,109 @@ const App = () => {
     return cartItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
   };
 
+  const clearCart = () => {
+    setCartItems([]);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
     <Router>
-      <ErrorBoundary>
-        <Routes>
-          <Route path="/" element={
-            <>
-              <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-              <Home user={user} />
-            </>
-          } />
-          <Route path="/Home" element={<Navigate to="/" replace />} />
-          <Route path="/signin" element={<SignIn setUser={handleLogin} />} />
-          <Route path="/signup" element={<SignUp />} />
-          
-          {/* Protected Routes */}
-          <Route 
-            path="/menu" 
-            element={
-              <ProtectedRoute>
+      <div className="min-h-screen flex flex-col">
+        <ErrorBoundary>
+          <Routes>
+            <Route path="/" element={
+              <>
                 <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-                <Menu 
-                  cartItems={cartItems}
-                  setCartItems={setCartItems}
-                />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/cart" 
-            element={
-              <ProtectedRoute>
-                <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-                <CartPage 
-                  cartItems={cartItems}
-                  onUpdateQuantity={handleUpdateQuantity}
-                  onDelete={handleDeleteCartItem}
-                  onEdit={handleEditCartItem}
-                  onUpdateCartItem={handleUpdateCartItem}
-                  editingCartItem={editingCartItem}
-                  setEditingCartItem={setEditingCartItem}
-                  calculateTotal={calculateTotal}
-                  loyaltyPoints={loyaltyPoints}
-                  onApplyPoints={handleApplyPoints}
-                  onPointsEarned={handlePointsEarned}
-                  user={user}
-                />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/OrderTracking" 
-            element={
-              <ProtectedRoute>
-                <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-                <OrderTracking />
-              </ProtectedRoute>
-            } 
-          />
-          <Route 
-            path="/RedeemPoints" 
-            element={
-              <ProtectedRoute>
-                <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-                <RedeemPoints loyaltyPoints={loyaltyPoints} />
-              </ProtectedRoute>
-            } 
-          />
-          <Route
-            path="/profile"
-            element={
-              <ProtectedRoute>
-                <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-                <Profile 
-                  user={user}
-                  loyaltyPoints={loyaltyPoints}
-                  onUpdateUser={handleLogin}
-                />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/order-history"
-            element={
-              <ProtectedRoute>
-                <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
-                <OrderHistory />
-              </ProtectedRoute>
-            }
-          />
-        </Routes>
-      </ErrorBoundary>
+                <Home user={user} />
+              </>
+            } />
+            <Route path="/Home" element={<Navigate to="/" replace />} />
+            <Route path="/signin" element={<SignIn setUser={handleLogin} />} />
+            <Route path="/signup" element={<SignUp />} />
+            
+            {/* Protected Routes */}
+            <Route 
+              path="/menu" 
+              element={
+                <ProtectedRoute>
+                  <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
+                  <Menu 
+                    cartItems={cartItems}
+                    setCartItems={setCartItems}
+                  />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/cart" 
+              element={
+                <ProtectedRoute>
+                  <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
+                  <CartPage 
+                    cartItems={cartItems}
+                    onUpdateQuantity={handleUpdateQuantity}
+                    onDelete={handleDeleteCartItem}
+                    onEdit={handleEditCartItem}
+                    onUpdateCartItem={handleUpdateCartItem}
+                    editingCartItem={editingCartItem}
+                    setEditingCartItem={setEditingCartItem}
+                    calculateTotal={calculateTotal}
+                    loyaltyPoints={loyaltyPoints}
+                    onApplyPoints={handleApplyPoints}
+                    onPointsEarned={handlePointsEarned}
+                    user={user}
+                    clearCart={clearCart}
+                  />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/OrderTracking" 
+              element={
+                <ProtectedRoute>
+                  <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
+                  <OrderTracking />
+                </ProtectedRoute>
+              } 
+            />
+            <Route 
+              path="/RedeemPoints" 
+              element={
+                <ProtectedRoute>
+                  <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
+                  <RedeemPoints loyaltyPoints={loyaltyPoints} />
+                </ProtectedRoute>
+              } 
+            />
+            <Route
+              path="/profile"
+              element={
+                <ProtectedRoute>
+                  <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
+                  <Profile 
+                    user={user}
+                    loyaltyPoints={loyaltyPoints}
+                    onUpdateUser={handleLogin}
+                  />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/order-history"
+              element={
+                <ProtectedRoute>
+                  <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
+                  <OrderHistory />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </ErrorBoundary>
+        <Footer />
+      </div>
     </Router>
   )
 }

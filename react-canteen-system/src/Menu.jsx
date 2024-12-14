@@ -4,11 +4,11 @@ import { useNavigate, Link } from 'react-router-dom';
 
 // Define categories and menu items outside the component for clarity
 const categories = [
-  { id: 'all', name: 'All', icon: '🍽️' },
-  { id: 'rice', name: 'Rice', icon: '🍚' },
-  { id: 'noodles', name: 'Noodles', icon: '🍜' },
-  { id: 'drinks', name: 'Drinks', icon: '🥤' },
-  { id: 'sides', name: 'Sides', icon: '🍟' },
+  { id: 'all', name: 'All'},
+  { id: 'rice', name: 'Rice'},
+  { id: 'traditional', name: 'Local'},
+  { id: 'drinks', name: 'Drinks'},
+  { id: 'sides', name: 'Sides' },
 ];
 
 // Enhanced CategoryButton component
@@ -54,7 +54,8 @@ const MenuItem = ({ item, onAddToCart }) => {
       basePrice: item.basePrice,
       customizations: currentSelections || { required: [], optional: [] },
       image: item.image,
-      quantity: quantity
+      quantity: quantity,
+      prepTime: item.prepTime
     };
     onAddToCart(cartItem);
     setQuantity(1);
@@ -80,7 +81,11 @@ const MenuItem = ({ item, onAddToCart }) => {
       
       <div className="p-5">
         <h3 className="text-xl font-bold text-gray-800 mb-2">{item.name}</h3>
-        <p className="text-gray-600 text-sm mb-4">{item.description}</p>
+        <p className="text-gray-600 text-sm mb-3">{item.description}</p>
+        <div className="inline-flex items-center bg-orange-50 text-orange-700 px-3 py-1 rounded-md mb-4">
+          <span className="material-icons text-base mr-2">schedule</span>
+          <span className="font-medium">Prep Time: {item.prepTime} mins</span>
+        </div>
         
         {/* Customizations display */}
         {currentSelections && (
@@ -297,22 +302,8 @@ const Menu = ({ cartItems, setCartItems }) => {
     }
   };
 
-  const handleViewOrderTracking = () => {
-    if (cartItems.length === 0) {
-      navigate('/OrderTracking'); // Show NoOrderDisplay when cart is empty
-    } else {
-      // Navigate with order data when there are items
-      navigate('/OrderTracking', { 
-        state: { 
-          order: {
-            items: cartItems,
-            status: 'Placed',
-            total: calculateTotal(),
-            orderId: `ORD-${Date.now()}` // Generate a simple order ID
-          }
-        } 
-      });
-    }
+  const handleViewCart = () => {
+    navigate('/cart');
   };
 
   const filteredItems = selectedCategory === 'all' 
@@ -320,7 +311,7 @@ const Menu = ({ cartItems, setCartItems }) => {
     : menuItems.filter(item => item.category === selectedCategory);
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-gray-50 py-20">
       <div className="flex-1 p-8 space-y-8">
         {/* Header */}
         <div className="text-center space-y-4 mb-12">
@@ -388,10 +379,10 @@ const Menu = ({ cartItems, setCartItems }) => {
                   <span className="font-medium">GH₵{calculateTotal().toFixed(2)}</span>
                 </div>
                 <button
-                  onClick={handleViewOrderTracking}
+                  onClick={handleViewCart}
                   className="w-full py-3 bg-indigo-600 text-white rounded-xl font-medium hover:bg-indigo-700 transition-colors"
                 >
-                  {cartItems.length > 0 ? 'Place Order' : 'View Orders'}
+                  {cartItems.length > 0 ? 'View Cart' : 'View Orders'}
                 </button>
               </div>
             </>

@@ -42,7 +42,6 @@ const Navbar = ({ user, onLogout, cartItemCount }) => {
               <>
                 <li><Link to="/menu" className="hover:text-white">Menu</Link></li>
                 <li><Link to="/cart" className="hover:text-white">Cart {cartItemCount > 0 && `(${cartItemCount})`}</Link></li>
-                <li><Link to="/orders" className="hover:text-white">Orders</Link></li>
                 <li><Link to="/profile" className="hover:text-white">Profile</Link></li>
                 <li><Link to="/OrderTracking" className="hover:text-white">Track Order</Link></li>
               </>
@@ -76,7 +75,7 @@ const Navbar = ({ user, onLogout, cartItemCount }) => {
         )}
       </div>
     </nav>
-  )
-}
+  );
+};
 
 export default Navbar;

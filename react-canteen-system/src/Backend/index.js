@@ -51,6 +51,89 @@ const MenuItems = mongoose.model('MenuItems', menuItemSchema);
 const insertDummyData = async () => {
     const dummyData = [
         {
+            name: "Signature Burger",
+            category: "sides",
+            basePrice: 8.99,
+            description: "Juicy beef patty with special sauce and fresh vegetables",
+            image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format",
+            prepTime: 5,
+            options: {
+                required: [
+                    {
+                        name: "Toppings",
+                        choices: [
+                            { name: "Lettuce", price: 0 },
+                            { name: "Tomato", price: 0 },
+                            { name: "Cheese", price: 1.00 },
+                            { name: "Bacon", price: 1.50 }
+                        ]
+                    }
+                ],
+                optional: [
+                    {
+                        name: "Sauce",
+                        choices: [
+                            { name: "Ketchup", price: 0 },
+                            { name: "Mustard", price: 0 },
+                            { name: "Barbeque", price: 10.00 }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            name: "Fresh Garden Salad",
+            category: "sides",
+            basePrice: 6.99,
+            description: "Mixed greens with seasonal vegetables and house dressing",
+            image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&auto=format",
+            prepTime: 3,
+            options: {
+                required: [
+                    {
+                        name: "Dressing",
+                        choices: [
+                            { name: "Ranch", price: 0 },
+                            { name: "Vinaigrette", price: 0 },
+                            { name: "Caesar", price: 0.50 }
+                        ]
+                    }
+                ],
+                optional: []
+            }
+        },
+        {
+            name: "Classic Pizza",
+            category: "sides",
+            basePrice: 12.99,
+            description: "Hand-tossed pizza with premium toppings",
+            image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format",
+            prepTime: 10,
+            options: {
+                required: [
+                    {
+                        name: "Size",
+                        choices: [
+                            { name: "Small", price: 0 },
+                            { name: "Medium", price: 2.00 },
+                            { name: "Large", price: 4.00 }
+                        ]
+                    }
+                ],
+                optional: [
+                    {
+                        name: "Extra Toppings",
+                        choices: [
+                            { name: "Pepperoni", price: 1.50 },
+                            { name: "Mushrooms", price: 1.00 },
+                            { name: "Olives", price: 1.00 }
+                        ]
+                    }
+                ]
+            }
+        },
+
+{
             name: "Jollof Rice",
             category: "rice",
             basePrice: 25.00,
@@ -319,7 +402,55 @@ const insertDummyData = async () => {
                     }
                 ]
             }
-        }
+        },
+        {
+            name: "Sprite",
+            category: "drinks",
+            basePrice: 5.00,
+            description: "Lemon-lime flavored soda",
+            image: "/src/images/sprite.jpg",
+            prepTime: 0,
+            options: {
+                required: [],
+                optional: []
+            }
+        },
+        {
+            name: "Water",
+            category: "drinks",
+            basePrice: 2.00,
+            description: "Pure bottled water",
+            image: "/src/images/water.jpg",
+            prepTime: 0,
+            options: {
+                required: [],
+                optional: []
+            }
+        },
+        {
+            name: "Coke",
+            category: "drinks",
+            basePrice: 5.00,
+            description: "Refreshing cola drink",
+            image: "/src/images/coke.jpg",
+            prepTime: 0,
+            options: {
+                required: [],
+                optional: []
+            }
+        },
+        {
+            name: "Fanta",
+            category: "drinks",
+            basePrice: 5.00,
+            description: "Citrusy and refreshing orange soda",
+            image: "/src/images/fanta.jpg",
+            prepTime: 0,
+            options: {
+                required: [],
+                optional: []
+            }
+        },
     ];
 
     try {

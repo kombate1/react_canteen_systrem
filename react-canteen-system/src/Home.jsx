@@ -77,7 +77,7 @@ const Home = ({ user }) => {
       id: 1,
       name: "Signature Burger",
       description: "Juicy beef patty with special sauce and fresh vegetables",
-      price: "$8.99",
+      price: "GH₵8.99",
       image: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=500&auto=format",
       tag: "Bestseller"
     },
@@ -85,7 +85,7 @@ const Home = ({ user }) => {
       id: 2,
       name: "Fresh Garden Salad",
       description: "Mixed greens with seasonal vegetables and house dressing",
-      price: "$6.99",
+      price: "GH₵6.99",
       image: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=500&auto=format",
       tag: "Healthy Choice"
     },
@@ -93,7 +93,7 @@ const Home = ({ user }) => {
       id: 3,
       name: "Classic Pizza",
       description: "Hand-tossed pizza with premium toppings",
-      price: "$12.99",
+      price: "GH₵12.99",
       image: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=500&auto=format",
       tag: "Popular"
     }
@@ -251,68 +251,11 @@ const Home = ({ user }) => {
           </div>
         </section>
 
-        {/* Loyalty Rewards Section - Only shown to logged-in users */}
-        {user ? (
-          <section className="max-w-6xl mx-auto py-12 px-4">
-            <div className="text-center mb-10">
-              <span className="text-indigo-600 font-medium text-sm tracking-wide uppercase">Rewards Program</span>
-              <h2 className="text-3xl font-bold mt-2">Earn While You Eat</h2>
-              <div className="flex justify-center mt-4">
-                <div className="flex items-center gap-2 bg-indigo-50 rounded-full px-4 py-2">
-                  <span className="h-2 w-2 bg-green-500 rounded-full"></span>
-                  <p className="text-sm text-gray-600">Currently Active</p>
-                </div>
-              </div>
-            </div>
-
-            {/* Render RedeemPoints component here */}
-            <RedeemPoints />
-
-            <div className="mt-12 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-8">
-              <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-                <div>
-                  <h3 className="text-2xl font-bold text-gray-800">Your Current Progress</h3>
-                  <div className="flex items-center gap-2 mt-2">
-                    <div className="flex-1 h-2 w-48 bg-gray-200 rounded-full overflow-hidden">
-                      <div className="h-full w-[60%] bg-indigo-500 rounded-full"></div>
-                    </div>
-                    <span className="text-sm text-gray-600">180/300 points</span>
-                  </div>
-                </div>
-                <Link to="/menu">
-                  <button className="px-6 py-3 bg-indigo-500 text-white rounded-lg font-medium hover:bg-indigo-600 transition-all duration-300 flex items-center gap-2">
-                    Start Ordering
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                    </svg>
-                  </button>
-                </Link>
-              </div>
-            </div>
-          </section>
-        ) : (
-          <section className="max-w-6xl mx-auto py-8">
-            <div className="flex items-center justify-between bg-white shadow-md p-6 rounded-md">
-              <div>
-                <h3 className="text-2xl font-bold">Join our loyalty program</h3>
-                <p className="mt-2 text-gray-600">
-                  Earn points and get discounts on future orders.
-                </p>
-              </div>
-              <Link to="/signup">
-                <button className="px-6 py-2 bg-indigo-500 text-white rounded-md hover:bg-indigo-600">
-                  Sign Up Now
-                </button>
-              </Link>
-            </div>
-          </section>
-        )}
-
         {/* How It Works Section */}
         <section className="bg-gray-100 py-16">
           <h2 className="text-3xl font-bold mb-12 text-center">How It Works</h2>
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 px-4">
-            {[
+            {[ 
               { icon: "🍽️", text: 'Choose your meal' },
               { icon: "✨", text: 'Customize your meal' },
               { icon: "🛒", text: 'Add to cart' },
@@ -327,7 +270,7 @@ const Home = ({ user }) => {
         </section>
       </div>
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;

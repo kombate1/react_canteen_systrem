@@ -11,7 +11,7 @@ const Footer = () => {
             <h4 className="text-lg font-semibold">Contact Us</h4>
             <div className="space-y-2">
               <p className="text-gray-300">Email: kanteen@acity.com</p>
-              <p className="text-gray-300">Phone: (123) 456-7890</p>
+              <p className="text-gray-300">Phone: 0505948237</p>
             </div>
           </div>
 

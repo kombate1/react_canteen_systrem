@@ -138,7 +138,7 @@ const insertDummyData = async () => {
             category: "rice",
             basePrice: 25.00,
             description: "Spicy and flavorful rice cooked in rich tomato sauce with aromatic spices",
-            image: "/src/images/jollof-rice.jpg",
+            image: "/public/images/jollof-rice.jpg",
             prepTime: 2,
             options: {
                 required: [
@@ -176,7 +176,7 @@ const insertDummyData = async () => {
             category: "rice",
             basePrice: 20.00,
             description: "Rice and beans cooked with millet stalks, served with special black pepper sauce",
-            image: "/src/images/waakye.jpg",
+            image: "/public/images/waakye.jpg",
             prepTime: 2,
             options: {
                 required: [
@@ -207,7 +207,7 @@ const insertDummyData = async () => {
             category: "traditional",
             basePrice: 35.00,
             description: "Fermented corn and cassava dough served with grilled tilapia and pepper sauce",
-            image: "/src/images/banku-tilapia.jpg",
+            image: "/public/images/banku-tilapia.jpg",
             prepTime: 3,
             options: {
                 required: [
@@ -244,7 +244,7 @@ const insertDummyData = async () => {
             category: "traditional",
             basePrice: 30.00,
             description: "Pounded cassava and plantain with choice of light soup or groundnut soup",
-            image: "/src/images/fufu-soup.jpg",
+            image: "/public/images/fufu-soup.jpg",
             prepTime: 2,
             options: {
                 required: [
@@ -282,7 +282,7 @@ const insertDummyData = async () => {
             category: "sides",
             basePrice: 15.00,
             description: "Spiced and diced fried plantains with ground ginger and spices",
-            image: "/src/images/kelewele.jpg",
+            image: "/public/images/kelewele.jpg",
             prepTime: 1,
             options: {
                 required: [
@@ -312,7 +312,7 @@ const insertDummyData = async () => {
             category: "beans",
             basePrice: 25.00,
             description: "Spicy bean stew with fried plantains and gari",
-            image: "/src/images/red-red.jpg",
+            image: "/public/images/red-red.jpg",
             prepTime: 2,
             options: {
                 required: [
@@ -341,7 +341,7 @@ const insertDummyData = async () => {
             category: "traditional",
             basePrice: 28.00,
             description: "Boiled yam served with spinach stew (palava sauce) and choice of protein",
-            image: "/src/images/yam-palava.jpg",
+            image: "/public/images/yam-palava.jpg",
             prepTime: 2,
             options: {
                 required: [
@@ -371,7 +371,7 @@ const insertDummyData = async () => {
             category: "traditional",
             basePrice: 30.00,
             description: "Northern Ghana specialty of corn flour pudding served with green soup",
-            image: "/src/images/tuo-zaafi.jpg",
+            image: "/public/images/tuo-zaafi.jpg",
             prepTime: 3,
             options: {
                 required: [
@@ -408,7 +408,7 @@ const insertDummyData = async () => {
             category: "drinks",
             basePrice: 5.00,
             description: "Lemon-lime flavored soda",
-            image: "/src/images/sprite.jpg",
+            image: "/public/images/sprite.jpg",
             prepTime: 0,
             options: {
                 required: [],
@@ -420,7 +420,7 @@ const insertDummyData = async () => {
             category: "drinks",
             basePrice: 2.00,
             description: "Pure bottled water",
-            image: "/src/images/water.jpg",
+            image: "/public/images/water.jpg",
             prepTime: 0,
             options: {
                 required: [],
@@ -432,7 +432,7 @@ const insertDummyData = async () => {
             category: "drinks",
             basePrice: 5.00,
             description: "Refreshing cola drink",
-            image: "/src/images/coke.jpg",
+            image: "/public/images/coke.jpg",
             prepTime: 0,
             options: {
                 required: [],
@@ -444,7 +444,7 @@ const insertDummyData = async () => {
             category: "drinks",
             basePrice: 5.00,
             description: "Citrusy and refreshing orange soda",
-            image: "/src/images/fanta.jpg",
+            image: "/public/images/fanta.jpg",
             prepTime: 0,
             options: {
                 required: [],

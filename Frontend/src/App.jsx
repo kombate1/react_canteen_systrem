@@ -46,7 +46,7 @@ const App = () => {
   const handleApplyPoints = async (points) => {
     if (user) {
       try {
-        const response = await fetch('http://localhost:3001/api/user/points/update', {
+        const response = await fetch('https://react-canteen-systrem.onrender.com/api/user/points/update', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -75,7 +75,7 @@ const App = () => {
   const handlePointsEarned = async (points) => {
     if (user) {
       try {
-        const response = await fetch('http://localhost:3001/api/user/points/update', {
+        const response = await fetch('https://react-canteen-systrem.onrender.com/api/user/points/update', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -105,7 +105,7 @@ const App = () => {
   const fetchUserPoints = async () => {
     if (user) {
       try {
-        const response = await fetch(`http://localhost:3001/api/user/points/${user.id}`);
+        const response = await fetch(`https://react-canteen-systrem.onrender.com/api/user/points/${user.id}`);
         const data = await response.json();
         
         if (response.ok) {

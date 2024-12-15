@@ -44,6 +44,14 @@ const Navbar = ({ user, onLogout, cartItemCount }) => {
                 <li><Link to="/cart" className="hover:text-white">Cart {cartItemCount > 0 && `(${cartItemCount})`}</Link></li>
                 <li><Link to="/profile" className="hover:text-white">Profile</Link></li>
                 <li><Link to="/OrderTracking" className="hover:text-white">Track Order</Link></li>
+                <li>
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-2 bg-white rounded-md hover:bg-gray-100 lg:hidden"
+                  >
+                    Logout
+                  </button>
+                </li>
               </>
             )}
           </ul>

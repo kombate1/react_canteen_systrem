@@ -12,7 +12,7 @@ const OrderStatus = ({ status: initialStatus, orderId, estimatedTime, onOrderCom
     const checkOrderStatus = async () => {
       try {
         const response = await fetch(
-          `http://localhost:3001/api/orders/${orderId}/check-status?prepTime=${estimatedTime}`
+          `https://react-canteen-systrem.onrender.com/api/orders/${orderId}/check-status?prepTime=${estimatedTime}`
         );
         if (response.ok) {
           const data = await response.json();

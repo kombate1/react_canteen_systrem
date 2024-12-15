@@ -76,6 +76,16 @@ Before you start, ensure you have the following installed on your local machine:
 
 ## API Endpoints
 
+(![Screenshot 2024-12-14 233144](https://github.com/user-attachments/assets/c3044ca3-dd82-4ecd-9320-8c4313e3395a)
+)
+![Screenshot 2024-12-14 233144](https://github.com/user-attachments/assets/88783b8d-4f58-47ce-8929-a612f27ba7a1)
+![Screenshot 2024-12-14 232512](https://github.com/user-attachments/assets/1d436468-e017-4684-ae0b-2d4250a54e74)
+![Screenshot 2024-12-14 232651](https://github.com/user-attachments/assets/570420e9-ca8a-4916-a9f5-a1967efd4095)
+![Screenshot 2024-12-14 232902](https://github.com/user-attachments/assets/4341b1e6-f1be-47b6-8e61-4067768a941c)
+![Screenshot 2024-12-14 232953](https://github.com/user-attachments/assets/584874eb-4996-4b06-8b7a-72250519683e)
+![Screenshot 2024-12-14 233044](https://github.com/user-attachments/assets/32fc1895-4b60-42bb-9d04-26a9dd1a1904)
+
+
 
 
 

@@ -6,7 +6,17 @@ const app = express();
 app.use(bodyParser.json());
 
 // Use CORS middleware
-app.use(cors());
+
+
+
+
+app.use(
+  cors({
+    origin: "https://react-canteen-systrem-1.onrender.com", 
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 
 
 mongoose.connect('mongodb+srv://bikinankombat:1234567890@canteensystem.ly7wk.mongodb.net/canteen_system?retryWrites=true&w=majority&appName=CanteenSystem')

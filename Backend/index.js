@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-mongoose.connect('mongodb+srv://bikinankombat:ucaj03jFxnpAVvKQ@canteensystem.uqtkx.mongodb.net/?retryWrites=true&w=majority&appName=CanteenSystem')
+mongoose.connect('mongodb+srv://bikinankombat:1234567890@canteensystem.ly7wk.mongodb.net/canteen_system?retryWrites=true&w=majority&appName=CanteenSystem')
   .then(() => {
     console.log('Connected to MongoDB');
   })

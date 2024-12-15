@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path'
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import cors from 'cors';
@@ -7,7 +8,13 @@ app.use(bodyParser.json());
 
 // Use CORS middleware
 
+// Serve static files from the dist directory
+app.use(express.static(path.join(__dirname, 'dist')));
 
+// Catch-all route to serve index.html for all other routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+});
 
 
 app.use(

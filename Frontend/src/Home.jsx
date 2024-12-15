@@ -1,5 +1,5 @@
 import React from 'react';
-import food from './images/food-bg2.jpeg';
+import food from '/images/food-bg2.jpeg';
 import { Link } from 'react-router-dom';
 
 // Define the RedeemPoints component outside of Home

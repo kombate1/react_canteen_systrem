@@ -243,9 +243,9 @@ const Menu = ({ cartItems, setCartItems }) => {
   useEffect(() => {
     const fetchMenuItems = async () => {
       try {
-        let url = 'http://localhost:3001/api/menu-items';
+        let url = 'https://react-canteen-systrem.onrender.com/api/menu-items';
         if (selectedCategory !== 'all') {
-          url = `http://localhost:3001/api/menu-items/${selectedCategory}`;
+          url = `https://react-canteen-systrem.onrender.com/api/menu-items/${selectedCategory}`;
         }
         const response = await fetch(url);
         const data = await response.json();

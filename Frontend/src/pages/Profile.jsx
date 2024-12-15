@@ -22,7 +22,7 @@ const Profile = ({ user, loyaltyPoints, onUpdateUser }) => {
 
   const fetchPointsHistory = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/user/points/history/${user.id}`);
+      const response = await fetch(`https://react-canteen-systrem.onrender.com/api/user/points/history/${user.id}`);
       const data = await response.json();
       if (response.ok) {
         setPointsHistory(data.pointsHistory || []);
@@ -54,7 +54,7 @@ const Profile = ({ user, loyaltyPoints, onUpdateUser }) => {
     setError('');
 
     try {
-      const response = await fetch(`http://localhost:3001/api/user/update/${user.id}`, {
+      const response = await fetch(`https://react-canteen-systrem.onrender.com/api/user/update/${user.id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

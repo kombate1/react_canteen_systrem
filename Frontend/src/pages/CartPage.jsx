@@ -53,7 +53,7 @@ const CartPage = ({
     }
 
     try {
-      const response = await fetch('http://localhost:3001/api/user/points/update', {
+      const response = await fetch('https://react-canteen-systrem.onrender.com/api/user/points/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ const CartPage = ({
     if (appliedPoints <= 0) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/user/points/update', {
+      const response = await fetch('https://react-canteen-systrem.onrender.com/api/user/points/update', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -125,7 +125,7 @@ const CartPage = ({
         status: 'Placed'
       };
 
-      const response = await fetch('http://localhost:3001/api/orders', {
+      const response = await fetch('https://react-canteen-systrem.onrender.com/api/orders', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

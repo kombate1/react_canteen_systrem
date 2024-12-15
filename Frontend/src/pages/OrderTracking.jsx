@@ -14,7 +14,7 @@ const OrderTracking = () => {
   const fetchOrderData = async (userId) => {
     try {
       // Fetch active order
-      const activeResponse = await fetch(`http://localhost:3001/api/orders/active/${userId}`);
+      const activeResponse = await fetch(`https://react-canteen-systrem.onrender.com/api/orders/active/${userId}`);
       const activeData = await activeResponse.json();
       
       if (activeResponse.ok && activeData.order) {
@@ -25,7 +25,7 @@ const OrderTracking = () => {
       }
 
       // Fetch order history
-      const historyResponse = await fetch(`http://localhost:3001/api/orders/history/${userId}`);
+      const historyResponse = await fetch(`https://react-canteen-systrem.onrender.com/api/orders/history/${userId}`);
       const historyData = await historyResponse.json();
       
       if (historyResponse.ok) {
@@ -73,7 +73,7 @@ const OrderTracking = () => {
 
   const calculateTotalPrepTime = async (items) => {
     try {
-      const menuResponse = await fetch('http://localhost:3001/api/menu-items');
+      const menuResponse = await fetch('https://react-canteen-systrem.onrender.com/api/menu-items');
       const menuItems = await menuResponse.json();
       
       const total = items.reduce((sum, orderItem) => {
@@ -96,7 +96,7 @@ const OrderTracking = () => {
 
   const handleDeleteOrder = async (orderId) => {
     try {
-      const response = await fetch(`http://localhost:3001/api/orders/${orderId}`, {
+      const response = await fetch(`https://react-canteen-systrem.onrender.com/api/orders/${orderId}`, {
         method: 'DELETE',
       });
 

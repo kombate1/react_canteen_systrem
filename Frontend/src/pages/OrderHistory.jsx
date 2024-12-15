@@ -11,7 +11,7 @@ const OrderHistory = ({ user }) => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch(`http://localhost:3001/api/orders/${user.id}`);
+      const response = await fetch(`https://react-canteen-systrem.onrender.com/api/orders/${user.id}`);
       const data = await response.json();
       
       if (response.ok) {

@@ -32,6 +32,12 @@ const CartPage = ({
     setDiscountedTotal(newTotal);
   }, [cartItems, appliedPoints, calculateTotal]);
 
+  // Log state changes for debugging
+  useEffect(() => {
+    console.log('Applied Points:', appliedPoints);
+    console.log('Points to Apply:', pointsToApply);
+  }, [appliedPoints, pointsToApply]);
+
   const handleApplyPoints = async () => {
     setError('');
     const points = parseInt(pointsToApply);
@@ -69,13 +75,14 @@ const CartPage = ({
         throw new Error('Failed to apply points');
       }
 
+      const data = await response.json(); // Get updated points from response
       setAppliedPoints(points);
       setPointsToApply('');
-      onApplyPoints(points);
+      onApplyPoints(points); // Notify parent component
 
-      // Save updated loyaltyPoints to localStorage
+      // Update local storage with the new loyalty points
       const updatedLoyaltyPoints = loyaltyPoints - points;
-      localStorage.setItem('loyaltyPoints', JSON.stringify(updatedLoyaltyPoints));
+      localStorage.setItem('loyaltyPoints', JSON.stringify(updatedLoyaltyPoints)); // Persist to localStorage
 
     } catch (error) {
       console.error('Error applying points:', error);

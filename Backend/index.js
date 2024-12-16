@@ -7,12 +7,9 @@ import cors from 'cors';
 const app = express();
 app.use(bodyParser.json());
 
-// Get the directory name from import.meta.url
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 
-// Serve static files from the "dist" folder
-app.use(express.static(path.join(__dirname, 'dist')));
+
+
 
 
 app.use(

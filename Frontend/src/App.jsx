@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import Home from './Home'
 import Menu from './Menu'
@@ -200,7 +200,7 @@ const App = () => {
             
             {/* Protected Routes */}
             <Route 
-              path="/Menu" 
+              path="/menu" 
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
@@ -212,7 +212,7 @@ const App = () => {
               } 
             />
             <Route 
-              path="/CartPage" 
+              path="/cart" 
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
@@ -253,7 +253,7 @@ const App = () => {
               } 
             />
             <Route
-              path="/Profile"
+              path="/profile"
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
@@ -266,7 +266,7 @@ const App = () => {
               }
             />
             <Route
-              path="/OrderHistory"
+              path="/order-history"
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />

@@ -40,7 +40,7 @@ const Navbar = ({ user, onLogout, cartItemCount }) => {
             <li><Link to="/" className="hover:text-white">Home</Link></li>
             {user && (
               <>
-                <li><Link to="/menu" className="hover:text-white">Menu</Link></li>
+                <li><Link to="/Menu" className="hover:text-white">Menu</Link></li>
                 <li><Link to="/cart" className="hover:text-white">Cart {cartItemCount > 0 && `(${cartItemCount})`}</Link></li>
                 <li><Link to="/profile" className="hover:text-white">Profile</Link></li>
                 <li><Link to="/OrderTracking" className="hover:text-white">Track Order</Link></li>

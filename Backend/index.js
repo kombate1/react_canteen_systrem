@@ -9,12 +9,12 @@ app.use(bodyParser.json());
 
 
 
-
-
-
 app.use(
   cors({
-    origin: "https://react-canteen-systrem-1.onrender.com", 
+    origin: [
+      "https://react-canteen-systrem-1.onrender.com", // Production URL
+      "http://localhost:4173" // Local development URL
+    ],
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })

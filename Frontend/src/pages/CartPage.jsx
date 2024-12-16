@@ -74,7 +74,9 @@ const CartPage = ({
       onApplyPoints(points);
 
       // Save updated loyaltyPoints to localStorage
-      localStorage.setItem('loyaltyPoints', JSON.stringify(loyaltyPoints - points));
+      const updatedLoyaltyPoints = loyaltyPoints - points;
+      localStorage.setItem('loyaltyPoints', JSON.stringify(updatedLoyaltyPoints));
+
     } catch (error) {
       console.error('Error applying points:', error);
       setError('Failed to apply points. Please try again.');
@@ -108,7 +110,9 @@ const CartPage = ({
       }
 
       // Save updated loyaltyPoints to localStorage
-      localStorage.setItem('loyaltyPoints', JSON.stringify(loyaltyPoints));
+      const updatedLoyaltyPoints = loyaltyPoints; // Assuming points are returned to the user
+      localStorage.setItem('loyaltyPoints', JSON.stringify(updatedLoyaltyPoints));
+
     } catch (error) {
       console.error('Error removing points:', error);
       setError('Failed to remove points. Please try again.');

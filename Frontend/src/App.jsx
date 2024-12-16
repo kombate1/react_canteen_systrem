@@ -200,7 +200,7 @@ const App = () => {
             
             {/* Protected Routes */}
             <Route 
-              path="/menu" 
+              path="/Menu" 
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
@@ -212,7 +212,7 @@ const App = () => {
               } 
             />
             <Route 
-              path="/cart" 
+              path="/CartPage" 
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
@@ -253,7 +253,7 @@ const App = () => {
               } 
             />
             <Route
-              path="/profile"
+              path="/Profile"
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />
@@ -266,7 +266,7 @@ const App = () => {
               }
             />
             <Route
-              path="/order-history"
+              path="/OrderHistory"
               element={
                 <ProtectedRoute>
                   <Navbar cartItemCount={cartItems.length} user={user} onLogout={handleLogout} />

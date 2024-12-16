@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { CustomizationModal } from '../Menu';
 
@@ -20,19 +20,22 @@ const CartPage = ({
   const [appliedPoints, setAppliedPoints] = useState(0);
   const [pointsToApply, setPointsToApply] = useState('');
   const [error, setError] = useState('');
-  const [discountedTotal, setDiscountedTotal] = useState(calculateTotal());
 
-  const pointsValue = 0.01; // Each point is worth GH₵0.01
-
-  // Update discounted total whenever cart items or applied points change
-  useEffect(() => {
+  // Memoize the discounted total calculation
+  const discountedTotal = useMemo(() => {
     const originalTotal = calculateTotal();
-    const discount = appliedPoints * pointsValue;
-    const newTotal = Math.max(originalTotal - discount, 0);
-    setDiscountedTotal(newTotal);
+    const discount = appliedPoints * 0.01; // Each point is worth GH₵0.01
+    return Math.max(originalTotal - discount, 0);
   }, [cartItems, appliedPoints, calculateTotal]);
 
-  const handleApplyPoints = async () => {
+  // Log state changes for debugging
+  useEffect(() => {
+    console.log('Applied Points:', appliedPoints);
+    console.log('Points to Apply:', pointsToApply);
+  }, [appliedPoints, pointsToApply]);
+
+  // Handle applying points
+  const handleApplyPoints = useCallback(async () => {
     setError('');
     const points = parseInt(pointsToApply);
     
@@ -82,7 +85,7 @@ const CartPage = ({
       console.error('Error applying points:', error);
       setError('Failed to apply points. Please try again.');
     }
-  };
+  }, [pointsToApply, loyaltyPoints, user, onApplyPoints, calculateTotal]);
 
   const handleRemovePoints = async () => {
     if (appliedPoints <= 0) return;
@@ -269,7 +272,7 @@ const CartPage = ({
                     <h3 className="font-bold">Your Loyalty Points: {loyaltyPoints - appliedPoints}</h3>
                     <p className="text-sm text-gray-600">
                       {appliedPoints > 0 
-                        ? `Applied ${appliedPoints} points (-GH₵${(appliedPoints * pointsValue).toFixed(2)})`
+                        ? `Applied ${appliedPoints} points (-GH₵${(appliedPoints * 0.01).toFixed(2)})`
                         : `You can use your points for a discount (100 points = GH₵1.00)`
                       }
                     </p>
@@ -345,7 +348,7 @@ const CartPage = ({
                   {appliedPoints > 0 && (
                     <div className="flex justify-between items-center text-green-600">
                       <span>Points Discount:</span>
-                      <span>-GH₵{(appliedPoints * pointsValue).toFixed(2)}</span>
+                      <span>-GH₵{(appliedPoints * 0.01).toFixed(2)}</span>
                     </div>
                   )}
                   <div className="flex justify-between items-center text-xl font-bold">

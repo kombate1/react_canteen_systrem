@@ -546,7 +546,7 @@ app.post('/api/customize', (req, res) => {
     res.status(200).send('Customization processed');
 });
 
-// Add this endpoint to your existing backend
+
 app.post('/api/menu-items/prep-times', async (req, res) => {
     try {
         const { itemIds } = req.body;
